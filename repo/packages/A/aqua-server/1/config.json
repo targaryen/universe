@@ -130,6 +130,11 @@
       "description": "Advanced configuration for Aqua",
       "type": "object",
       "properties": {
+        "dockercfgLocation": {
+          "description": ".dockercfg location on Mesos agent nodes. Aqua containers are private by default; this config must contain permissions to access.",
+          "type": "string",
+          "default": "file:///etc/docker.tar.gz"
+        },
         "acceptedResourceRole": {
           "description": "Accepted resource role restriction for service",
           "type": "string",
