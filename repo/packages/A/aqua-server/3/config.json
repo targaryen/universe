@@ -29,7 +29,7 @@
         "port": {
           "description": "Port to run the Aqua web UI on",
           "type": "integer",
-          "default": 8080
+          "default": 8083
         }
       },
       "required":[
