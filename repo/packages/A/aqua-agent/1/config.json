@@ -72,16 +72,6 @@
           "type": "string",
           "default": "*"
         },
-        "extraConstraintName": {
-          "description": "If provided, the service will be constrained to resource offers of this type. Ex: enter \"my_attribute\" which will become: \"my_attribute:LIKE:my_value\"",
-          "type": "string",
-          "default": "ethos_role"
-        },
-        "extraConstraintValue": {
-          "description": "If provided, the service will be constrained to resource offers of this type. Ex: enter \"my_value\" which will become: \"my_attribute:LIKE:my_value\"",
-          "type": "string",
-          "default": "worker"
-        },
         "namespaces_enabled": {
           "default": false,
           "description": "Whether user namespaces is enabled on the host. Must be set to true if so.",
