@@ -140,16 +140,6 @@
           "type": "string",
           "default": "*"
         },
-        "extraConstraintName": {
-          "description": "If provided, the service will be constrained to resource offers of this type. Ex: enter \"my_attribute\" which will become: \"my_attribute:LIKE:my_value\"",
-          "type": "string",
-          "default": "ethos_role"
-        },
-        "extraConstraintValue": {
-          "description": "If provided, the service will be constrained to resource offers of this type. Ex: enter \"my_value\" which will become: \"my_attribute:LIKE:my_value\"",
-          "type": "string",
-          "default": "control"
-        },
         "scalockKernelModeEnabled": {
           "description": "Whether Kernel mode should be enabled for the web server",
           "type": "string",
