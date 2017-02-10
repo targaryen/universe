@@ -4,7 +4,7 @@
   "framework": false,
   "maintainer": "support@aquasec.com",
   "name": "aqua-agent",
-  "preInstallNotes": "Before installing the agent, you must have a running installation of aqua-web and aqua-gateway.",
+  "preInstallNotes": "You should have aqua-web and aqua-gateway running before performing the installation.  This DC/OS Service is currently EXPERIMENTAL. There may be bugs, incomplete features, incorrect documentation, or other discrepancies. Experimental packages should never be used in production!",
   "postInstallNotes": "Aqua agent has been installed.",
   "postUninstallNotes": "Aqua agent master container has been removed. However, you will need to SSH into the nodes and run the Aqua uninstall script to completely remove Aqua.",
   "tags": [

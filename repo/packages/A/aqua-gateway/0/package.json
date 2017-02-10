@@ -4,7 +4,7 @@
   "framework": false,
   "maintainer": "support@aquasec.com",
   "name": "aqua-gateway",
-  "preInstallNotes": "Before installing the gateway, you must have a running installation of aqua-web.",
+  "preInstallNotes": "You should have aqua-web installed before adding the gateway.  This DC/OS Service is currently EXPERIMENTAL. There may be bugs, incomplete features, incorrect documentation, or other discrepancies. Experimental packages should never be used in production!",
   "postInstallNotes": "Aqua Gateway has been installed",
   "postUninstallNotes": "Aqua Gateway has been uninstalled.",
   "tags": [
