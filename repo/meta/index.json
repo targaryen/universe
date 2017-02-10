@@ -34,10 +34,11 @@
     {
       "versions": {
         "0.1.0": "0",
-        "2.0.0": "1"
+        "2.0.0": "1",
+        "2.0.0.1": "2"
       },
       "name": "aqua-server",
-      "currentVersion": "2.0.0",
+      "currentVersion": "2.0.0.1",
       "description": "A web interface to control the Aqua CSP.",
       "framework": false,
       "tags": [

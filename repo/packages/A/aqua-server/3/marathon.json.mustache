@@ -1,0 +1,83 @@
+{
+  "id": "{{service.name}}",
+  "cpus": {{service.cpus}},
+  "mem": {{service.mem}},
+  "instances": {{service.instances}},
+  "uris":[
+    "{{advanced.dockercfgLocation}}"
+  ],
+  "acceptedResourceRoles": [
+    "{{advanced.acceptedResourceRole}}"
+  ],
+  "constraints": [
+    {{#advanced.extraConstraintName}}
+      ["{{advanced.extraConstraintName}}", "LIKE", "{{advanced.extraConstraintValue}}"],
+    {{/advanced.extraConstraintName}}
+    ["hostname", "UNIQUE"]
+  ],
+  "env": {
+    "SCALOCK_DBUSER": "{{environment.database_user}}",
+    "SCALOCK_DBPASSWORD": "{{environment.dbPassword}}",
+    "SCALOCK_DBNAME": "{{environment.database_name}}",
+    "SCALOCK_DBHOST": "{{environment.database_host}}",
+    "SCALOCK_DBPORT": "{{environment.database_port}}",
+    "SCALOCK_AUDIT_DBUSER": "{{environment.audit_database_user}}",
+    "SCALOCK_AUDIT_DBPASSWORD": "{{environment.audit_database_password}}",
+    "SCALOCK_AUDIT_DBNAME": "{{environment.audit_database_name}}",
+    "SCALOCK_AUDIT_DBHOST": "{{environment.audit_database_host}}",
+    "SCALOCK_AUDIT_DBPORT": "{{environment.audit_database_port}}",
+    "SCALOCK_KERNEL_MODE_ENABLED": "{{advanced.scalockKernelModeEnabled}}",
+    "ADMIN_PASSWORD": "{{environment.administrator_password}}",
+    "BATCH_INSTALL_TOKEN": "{{environment.secure_token}}",
+    "BATCH_INSTALL_NAME": "{{advanced.batchInstallName}}",
+    "BATCH_INSTALL_GATEWAY": "{{environment.token_gateway}}",
+    "BATCH_INSTALL_ENFORCE_MODE": "{{advanced.batchInstallEnforceMode}}",
+    "SCALOCK_LOG_LEVEL": "{{advanced.scalockLogLevel}}",
+    "LICENSE_TOKEN": "{{environment.license_key}}",
+    "AUTHORIZATION_HEADER": "{{advanced.authorizationHeader}}"
+  },
+  "labels": {
+    "AGENT_FILL": "true"
+  },
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "{{resource.assets.container.docker.server}}",
+      "forcePullImage": true,
+      "network": "BRIDGE",
+      "portMappings": [
+        {
+          "hostPort": {{service.port}},
+          "containerPort": 8080,
+          "protocol": "tcp"
+        }
+      ],
+      "parameters": [
+        {
+          "key": "volume",
+          "value": "/var/run/docker.sock:/var/run/docker.sock"
+        },
+        {
+          "key": "user",
+          "value": "root"
+        }
+      ]
+    }
+  },
+  "healthChecks": [
+    {
+      "path": "/",
+      "port": {{service.port}},
+      "protocol": "HTTP",
+      "gracePeriodSeconds": 120,
+      "intervalSeconds": 60,
+      "timeoutSeconds": 30,
+      "maxConsecutiveFailures": 5
+    }
+  ],
+  "labels": {
+    "DCOS_SERVICE_NAME": "{{service.name}}",
+    "DCOS_SERVICE_SCHEME": "http",
+    "DCOS_SERVICE_PORT_INDEX": "0"
+  }
+}
