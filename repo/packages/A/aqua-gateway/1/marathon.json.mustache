@@ -1,0 +1,58 @@
+{
+  "id": "{{service.name}}",
+  "cpus": {{service.cpus}},
+  "mem": {{service.mem}},
+  "instances": {{service.instances}},
+  "uris":[
+    "{{advanced.dockercfgLocation}}"
+  ],
+  "acceptedResourceRoles": [
+    "{{advanced.acceptedResourceRole}}"
+  ],
+  "constraints": [
+    {{#advanced.extraConstraintName}}
+      ["{{advanced.extraConstraintName}}", "LIKE", "{{advanced.extraConstraintValue}}"],
+    {{/advanced.extraConstraintName}}
+    ["hostname", "UNIQUE"]
+  ],
+  "env": {
+    "SCALOCK_DBUSER": "{{environment.dbUsername}}",
+    "SCALOCK_DBPASSWORD": "{{environment.dbPassword}}",
+    "SCALOCK_DBNAME": "{{environment.dbDatabase}}",
+    "SCALOCK_DBHOST": "{{environment.dbHost}}",
+    "SCALOCK_DBPORT": "{{environment.dbPort}}",
+    "SCALOCK_AUDIT_DBUSER": "{{environment.dbUsername}}",
+    "SCALOCK_AUDIT_DBPASSWORD": "{{environment.dbPassword}}",
+    "SCALOCK_AUDIT_DBNAME": "{{environment.dbAuditDatabase}}",
+    "SCALOCK_AUDIT_DBHOST": "{{environment.dbHost}}",
+    "SCALOCK_AUDIT_DBPORT": "{{environment.dbPort}}",
+    "HEALTH_MONITOR": "0.0.0.0:80",
+    "SCALOCK_LOG_LEVEL": "DEBUG"
+  },
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "{{resource.assets.container.docker.gateway}}",
+      "forcePullImage": true,
+      "network": "HOST",
+      "portMappings": [
+        {
+          "hostPort": {{service.port}},
+          "containerPort": 3622,
+          "protocol": "tcp"
+        }
+      ]
+    }
+  },
+  "healthChecks": [
+    {
+      "port": 80,
+      "protocol": "HTTP",
+      "path": "/",
+      "gracePeriodSeconds": 120,
+      "intervalSeconds": 60,
+      "timeoutSeconds": 30,
+      "maxConsecutiveFailures": 3
+    }
+  ]
+}

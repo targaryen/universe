@@ -1,0 +1,16 @@
+{
+  "packagingVersion": "3.0",
+  "description": "Aqua CSP - Web",
+  "framework": false,
+  "maintainer": "support@aquasec.com",
+  "name": "aqua-web",
+  "postInstallNotes": "Aqua web has been installed. You can now install the gateway.",
+  "postUninstallNotes": "Aqua web containers have been uninstalled.",
+  "tags": [
+    "aqua",
+    "security"
+  ],
+  "version": "2.0",
+  "website": "https://www.aquasec.com/",
+  "selected": true
+}

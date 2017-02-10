@@ -1,0 +1,17 @@
+{
+  "packagingVersion": "3.0",
+  "description": "Aqua CSP - Gateway",
+  "framework": false,
+  "maintainer": "support@aquasec.com",
+  "name": "aqua-gateway",
+  "preInstallNotes": "Before installing the gateway, you must have a running installation of aqua-web.",
+  "postInstallNotes": "Aqua Gateway has been installed",
+  "postUninstallNotes": "Aqua Gateway has been uninstalled.",
+  "tags": [
+    "aqua",
+    "security"
+  ],
+  "version": "2.0",
+  "website": "https://www.aquasec.com/",
+  "selected": true
+}

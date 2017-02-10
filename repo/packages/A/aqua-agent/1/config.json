@@ -1,0 +1,93 @@
+{
+  "properties": {
+    "service": {
+      "description": "Overall service configuration for Aqua Agent",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Display name for the service on the DC/OS dashboard",
+          "type": "string",
+          "default": "aqua-agent"
+        },
+        "cpus": {
+          "description": "CPU allocation for the Aqua Agent instance",
+          "type": "number",
+          "default": 0.5,
+          "minimum": 0.05
+        },
+        "mem": {
+          "description": "Memory (MB) allocation for the Aqua Agent instance",
+          "type": "number",
+          "default": 256.0,
+          "minimum": 64.0
+        },
+        "instances": {
+          "description": "Number of Aqua Agent instances to deploy",
+          "type": "integer",
+          "default": 1
+        }
+      },
+      "required":[
+        "name",
+        "cpus",
+        "mem",
+        "instances"
+      ]
+    },
+    "environment": {
+      "description": "Environment configuration for Aqua Agent",
+      "properties": {
+        "scalockToken": {
+          "description": "Token for secure communication between components",
+          "type": "string",
+          "default": "aquatoken"
+        },
+        "scalockGatewayEndpoint": {
+          "description": "Endpoint for communication between components",
+          "type": "string",
+          "default": "aqua-gateway.marathon.mesos:3622"
+        }
+      },
+      "required":[
+        "scalockToken",
+        "scalockGatewayEndpoint"
+      ]
+    },
+    "advanced": {
+      "description": "Advanced configuration for Aqua",
+      "type": "object",
+      "properties": {
+        "dockercfgLocation": {
+          "description": ".dockercfg location on Mesos agent nodes. Aqua containers are private by default; this config must contain permissions to access.",
+          "type": "string",
+          "default": "file:///home/core/docker.tar.gz"
+        },
+        "restartContainers": {
+          "description": "Whether the Aqua agent should restart the existing Docker containers. Recommended: no",
+          "type": "string",
+          "default": "no"
+        },
+        "acceptedResourceRole": {
+          "description": "Accepted resource role restriction for service",
+          "type": "string",
+          "default": "*"
+        },
+        "extraConstraintName": {
+          "description": "If provided, the service will be constrained to resource offers of this type. Ex: enter \"my_attribute\" which will become: \"my_attribute:LIKE:my_value\"",
+          "type": "string",
+          "default": "ethos_role"
+        },
+        "extraConstraintValue": {
+          "description": "If provided, the service will be constrained to resource offers of this type. Ex: enter \"my_value\" which will become: \"my_attribute:LIKE:my_value\"",
+          "type": "string",
+          "default": "worker"
+        },
+        "namespaces_enabled": {
+          "default": false,
+          "description": "Whether user namespaces is enabled on the host. Must be set to true if so.",
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "properties": {
+    "service": {
+      "description": "Overall service configuration for Aqua Web",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Display name for the service on the DC/OS dashboard",
+          "type": "string",
+          "default": "aqua-web"
+        },
+        "cpus": {
+          "description": "CPU allocation for the Aqua Web instance",
+          "type": "number",
+          "default": 0.5,
+          "minimum": 0.05
+        },
+        "mem": {
+          "description": "Memory (MB) allocation for the Aqua Web instance",
+          "type": "number",
+          "default": 256.0,
+          "minimum": 64.0
+        },
+        "instances": {
+          "description": "Number of Aqua Web instances to deploy",
+          "type": "integer",
+          "default": 1
+        },
+        "port": {
+          "description": "Port to run the Aqua web UI on",
+          "type": "integer",
+          "default": 8083
+        }
+      },
+      "required":[
+        "name",
+        "cpus",
+        "mem",
+        "instances",
+        "port"
+      ]
+    },
+    "environment": {
+      "description": "Environment configuration for Aqua",
+      "properties": {
+        "dbHost": {
+          "description": "Aqua Postgres hostname",
+          "type": "string"
+        },
+        "dbPort": {
+          "description": "Aqua Postgres hostname",
+          "type": "integer",
+          "default": 5432
+        },
+        "dbDatabase": {
+          "description": "Aqua Postgres database name",
+          "type": "string",
+          "default": "aqua"
+        },
+        "dbAuditDatabase": {
+          "description": "Aqua Postgres audit database name",
+          "type": "string",
+          "default": "audit"
+        },
+        "dbUsername": {
+          "description": "Aqua Postgres database user",
+          "type": "string",
+          "default": "aqua"
+        },
+        "dbPassword": {
+          "description": "Aqua Postgres database password",
+          "type": "string"
+        },
+        "scalockToken": {
+          "description": "Token for secure communication between components",
+          "type": "string",
+          "default": "aquatoken"
+        },
+        "scalockGatewayEndpoint": {
+          "description": "Endpoint for communication between components",
+          "type": "string",
+          "default": "aqua-gateway.marathon.mesos:3622"
+        },
+        "scalockAdminPassword": {
+          "description": "Password for accessing Aqua web UI",
+          "type": "string",
+          "default": "password"
+        },
+        "scalockLicense": {
+          "description": "License key for Aqua",
+          "type": "string"
+        }
+      },
+      "required":[
+        "dbHost",
+        "dbPort",
+        "dbDatabase",
+        "dbAuditDatabase",
+        "dbUsername",
+        "dbPassword",
+        "scalockToken",
+        "scalockGatewayEndpoint",
+        "scalockAdminPassword",
+        "scalockLicense"
+      ]
+    },
+    "advanced": {
+      "description": "Advanced configuration for Aqua",
+      "type": "object",
+      "properties": {
+        "dockercfgLocation": {
+          "description": ".dockercfg location on Mesos agent nodes. Aqua containers are private by default; this config must contain permissions to access.",
+          "type": "string",
+          "default": "file:///home/core/docker.tar.gz"
+        },
+        "acceptedResourceRole": {
+          "description": "Accepted resource role restriction for service",
+          "type": "string",
+          "default": "*"
+        },
+        "scalockKernelModeEnabled": {
+          "description": "Whether Kernel mode should be enabled for the web server",
+          "type": "string",
+          "default": "false"
+        },
+        "batchInstallName": {
+          "description": "The name to use for the batch install",
+          "type": "string",
+          "default": "Local-Agents"
+        },
+        "batchInstallEnforceMode": {
+          "description": "Enforce mode for the batch install",
+          "type": "string",
+          "default": "y"
+        },
+        "scalockLogLevel": {
+          "description": "Enforce mode for the batch install",
+          "type": "string",
+          "default": "DEBUG"
+        },
+        "authorizationHeader": {
+          "description": "A custom Authorization header to use in the web UI. Do not use Authorization since it conflicts with DC/OS headers.",
+          "type": "string",
+          "default": "aqua-auth"
+        }
+      }
+    }
+  }
+}
