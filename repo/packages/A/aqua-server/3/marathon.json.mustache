@@ -4,7 +4,9 @@
   "mem": {{service.mem}},
   "instances": {{service.instances}},
   "uris":[
-    "{{advanced.dockercfgLocation}}"
+    {{#docker_config.enable}}
+      "{{docker_config.location}}"
+    {{/docker_config.enable}}
   ],
   "acceptedResourceRoles": [
     "{{advanced.acceptedResourceRole}}"

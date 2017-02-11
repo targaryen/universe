@@ -29,7 +29,7 @@
         "port": {
           "description": "Port to run the Aqua web UI on",
           "type": "integer",
-          "default": 8083
+          "default": 7374
         }
       },
       "required":[
@@ -97,7 +97,7 @@
         "token_gateway": {
           "description": "Endpoint for communication between components",
           "type": "string",
-          "default": "aqua-gateway.marathon.mesos:3622"
+          "default": "aqua-gateway.marathon.l4lb.thisdcos.directory:3622"
         },
         "administrator_password": {
           "description": "Password for initial administrator user in Aqua web interface",
@@ -130,11 +130,6 @@
       "description": "Advanced configuration for Aqua",
       "type": "object",
       "properties": {
-        "dockercfgLocation": {
-          "description": ".dockercfg location on Mesos agent nodes. Aqua containers are private by default; this config must contain permissions to access.",
-          "type": "string",
-          "default": "file:///etc/docker.tar.gz"
-        },
         "acceptedResourceRole": {
           "description": "Accepted resource role restriction for service",
           "type": "string",
@@ -164,6 +159,22 @@
           "description": "A custom Authorization header to use in the web UI. Do not use Authorization since it conflicts with DC/OS headers.",
           "type": "string",
           "default": "aqua-auth"
+        }
+      }
+    },
+    "docker_config": {
+      "type": "object",
+      "description": "Allows you to specify a docker config file for private registries.\nSee [this link](https://mesosphere.github.io/marathon/docs/native-docker-private-registry.html) for details.",
+      "properties": {
+        "enable": {
+          "description": "Enable use of a docker config tarball.",
+          "type": "boolean",
+          "default": true
+        },
+        "location": {
+          "description": "Location of file on Mesos agent nodes.  This must pre-exist.",
+          "type": "string",
+          "default": "file:///etc/docker.tar.gz"
         }
       }
     }
