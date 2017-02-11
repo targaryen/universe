@@ -138,7 +138,10 @@
           "type": "string",
           "default": "false"
         }
-      }
+      },
+      "required": [
+        "license_key"
+      ]
     },
     "gateway": {
       "description": "Initial configuration for Aqua",
