@@ -65,25 +65,6 @@
         "database_password": {
           "description": "Password for Aqua's primary database user",
           "type": "string"
-        },
-        "secure_token": {
-          "description": "Token for secure communication between components",
-          "type": "string",
-          "default": "aquatoken"
-        },
-        "token_gateway": {
-          "description": "Endpoint for communication between components",
-          "type": "string",
-          "default": "aqua-gateway.marathon.l4lb.thisdcos.directory:3622"
-        },
-        "administrator_password": {
-          "description": "Password for initial administrator user in Aqua web interface",
-          "type": "string",
-          "default": "password"
-        },
-        "license_key": {
-          "description": "License key for Aqua",
-          "type": "string"
         }
       },
       "required": [
@@ -91,11 +72,7 @@
         "database_port",
         "database_name",
         "database_user",
-        "database_password",
-        "secure_token",
-        "token_gateway",
-        "administrator_password",
-        "license_key"
+        "database_password"
       ]
     },
     "audit_database": {
@@ -123,25 +100,6 @@
         "audit_database_password": {
           "description": "Password for Aqua's audit database user",
           "type": "string"
-        },
-        "secure_token": {
-          "description": "Token for secure communication between components",
-          "type": "string",
-          "default": "aquatoken"
-        },
-        "token_gateway": {
-          "description": "Endpoint for communication between components",
-          "type": "string",
-          "default": "aqua-gateway.marathon.l4lb.thisdcos.directory:3622"
-        },
-        "administrator_password": {
-          "description": "Password for initial administrator user in Aqua web interface",
-          "type": "string",
-          "default": "password"
-        },
-        "license_key": {
-          "description": "License key for Aqua",
-          "type": "string"
         }
       },
       "required": [
@@ -149,33 +107,28 @@
         "audit_database_port",
         "audit_database_name",
         "audit_database_user",
-        "audit_database_password",
-        "secure_token",
-        "token_gateway",
-        "administrator_password",
-        "license_key"
+        "audit_database_password"
       ]
     },
     "configuration": {
       "description": "Initial configuration for Aqua",
       "type": "object",
       "properties": {
-        "batch_install_name": {
-          "description": "The name to use for the batch install",
+        "administrator_password": {
+          "description": "Password for initial administrator user in Aqua web interface",
           "type": "string",
-          "default": "mesos-agents"
-        },
-        "batchInstallEnforceMode": {
-          "description": "Enforce mode for the batch install",
-          "type": "string",
-          "default": "n"
-        },
-        "scalockLogLevel": {
-          "description": "Enforce mode for the batch install",
+          "default": "password"
+        }
+        "license_key": {
+          "description": "License key for Aqua",
+          "type": "string"
+        }
+        "log_level": {
+          "description": "Log level for aqua-web",
           "type": "string",
           "default": "INFO"
         },
-        "authorizationHeader": {
+        "authorization_header": {
           "description": "A custom Authorization header to use in the web UI. Do not use Authorization since it conflicts with DC/OS headers.",
           "type": "string",
           "default": "aqua-auth"
@@ -184,6 +137,32 @@
           "description": "Whether Kernel mode should be enabled for the web server",
           "type": "string",
           "default": "false"
+        }
+      }
+    },
+    "gateway": {
+      "description": "Initial configuration for Aqua",
+      "type": "object",
+      "properties": {
+        "token_gateway": {
+          "description": "Endpoint for communication between components",
+          "type": "string",
+          "default": "aqua-gateway.marathon.l4lb.thisdcos.directory:3622"
+        },
+        "batch_install_name": {
+          "description": "The name to use for the batch install",
+          "type": "string",
+          "default": "mesos-agents"
+        },
+        "secure_token": {
+          "description": "Batch install token value for authorizing registration of agents",
+          "type": "string",
+          "default": "mesos-token"
+        },
+        "enforce_mode": {
+          "description": "Enforce mode for the batch install (y for enforce, n for audit)",
+          "type": "string",
+          "default": "n"
         }
       }
     },
