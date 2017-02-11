@@ -118,11 +118,11 @@
           "description": "Password for initial administrator user in Aqua web interface",
           "type": "string",
           "default": "password"
-        }
+        },
         "license_key": {
           "description": "License key for Aqua",
           "type": "string"
-        }
+        },
         "log_level": {
           "description": "Log level for aqua-web",
           "type": "string",
