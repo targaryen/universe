@@ -21,10 +21,10 @@
           "default": 256.0,
           "minimum": 64.0
         },
-        "instances": {
-          "description": "Number of Aqua Web instances to deploy",
-          "type": "integer",
-          "default": 1
+        "acceptedResourceRole": {
+          "description": "Accepted resource role restriction for service",
+          "type": "string",
+          "default": "*"
         },
         "port": {
           "description": "Port to run the Aqua web UI on",
@@ -32,16 +32,16 @@
           "default": 7374
         }
       },
-      "required":[
+      "required": [
         "name",
         "cpus",
         "mem",
-        "instances",
+        "acceptedResourceRole",
         "port"
       ]
     },
-    "environment": {
-      "description": "Environment configuration for Aqua",
+    "database": {
+      "description": "Primary database configuration for Aqua",
       "properties": {
         "database_host": {
           "description": "Hostname for Aqua's primary database",
@@ -66,6 +66,41 @@
           "description": "Password for Aqua's primary database user",
           "type": "string"
         },
+        "secure_token": {
+          "description": "Token for secure communication between components",
+          "type": "string",
+          "default": "aquatoken"
+        },
+        "token_gateway": {
+          "description": "Endpoint for communication between components",
+          "type": "string",
+          "default": "aqua-gateway.marathon.l4lb.thisdcos.directory:3622"
+        },
+        "administrator_password": {
+          "description": "Password for initial administrator user in Aqua web interface",
+          "type": "string",
+          "default": "password"
+        },
+        "license_key": {
+          "description": "License key for Aqua",
+          "type": "string"
+        }
+      },
+      "required": [
+        "database_host",
+        "database_port",
+        "database_name",
+        "database_user",
+        "database_password",
+        "secure_token",
+        "token_gateway",
+        "administrator_password",
+        "license_key"
+      ]
+    },
+    "audit_database": {
+      "description": "Provides configuration for Aqua's auditing database",
+      "properties": {
         "audit_database_host": {
           "description": "Hostname for Aqua's audit database",
           "type": "string"
@@ -109,12 +144,7 @@
           "type": "string"
         }
       },
-      "required":[
-        "database_host",
-        "database_port",
-        "database_name",
-        "database_user",
-        "database_password",
+      "required": [
         "audit_database_host",
         "audit_database_port",
         "audit_database_name",
@@ -126,52 +156,47 @@
         "license_key"
       ]
     },
-    "advanced": {
-      "description": "Advanced configuration for Aqua",
+    "configuration": {
+      "description": "Initial configuration for Aqua",
       "type": "object",
       "properties": {
-        "acceptedResourceRole": {
-          "description": "Accepted resource role restriction for service",
-          "type": "string",
-          "default": "*"
-        },
-        "scalockKernelModeEnabled": {
-          "description": "Whether Kernel mode should be enabled for the web server",
-          "type": "string",
-          "default": "false"
-        },
-        "batchInstallName": {
+        "batch_install_name": {
           "description": "The name to use for the batch install",
           "type": "string",
-          "default": "Local-Agents"
+          "default": "mesos-agents"
         },
         "batchInstallEnforceMode": {
           "description": "Enforce mode for the batch install",
           "type": "string",
-          "default": "y"
+          "default": "n"
         },
         "scalockLogLevel": {
           "description": "Enforce mode for the batch install",
           "type": "string",
-          "default": "DEBUG"
+          "default": "INFO"
         },
         "authorizationHeader": {
           "description": "A custom Authorization header to use in the web UI. Do not use Authorization since it conflicts with DC/OS headers.",
           "type": "string",
           "default": "aqua-auth"
+        },
+        "scalockKernelModeEnabled": {
+          "description": "Whether Kernel mode should be enabled for the web server",
+          "type": "string",
+          "default": "false"
         }
       }
     },
-    "docker_config": {
+    "docker": {
       "type": "object",
       "description": "Allows you to specify a docker config file for private registries.\nSee [this link](https://mesosphere.github.io/marathon/docs/native-docker-private-registry.html) for details.",
       "properties": {
-        "enable": {
+        "config_enabled": {
           "description": "Enable use of a docker config tarball.",
           "type": "boolean",
           "default": true
         },
-        "location": {
+        "config_location": {
           "description": "Location of file on Mesos agent nodes.  This must pre-exist.",
           "type": "string",
           "default": "file:///etc/docker.tar.gz"

@@ -2,14 +2,14 @@
   "id": "{{service.name}}",
   "cpus": {{service.cpus}},
   "mem": {{service.mem}},
-  "instances": {{service.instances}},
+  "instances": 1,
   "uris":[
-    {{#docker_config.enable}}
-      "{{docker_config.location}}"
-    {{/docker_config.enable}}
+    {{#docker.config_enabled}}
+      "{{docker.config_location}}"
+    {{/docker.config_enabled}}
   ],
   "acceptedResourceRoles": [
-    "{{advanced.acceptedResourceRole}}"
+    "{{service.acceptedResourceRole}}"
   ],
   "constraints": [
     {{#advanced.extraConstraintName}}
@@ -18,20 +18,20 @@
     ["hostname", "UNIQUE"]
   ],
   "env": {
-    "SCALOCK_DBUSER": "{{environment.database_user}}",
-    "SCALOCK_DBPASSWORD": "{{environment.database_password}}",
-    "SCALOCK_DBNAME": "{{environment.database_name}}",
-    "SCALOCK_DBHOST": "{{environment.database_host}}",
-    "SCALOCK_DBPORT": "{{environment.database_port}}",
-    "SCALOCK_AUDIT_DBUSER": "{{environment.audit_database_user}}",
-    "SCALOCK_AUDIT_DBPASSWORD": "{{environment.audit_database_password}}",
-    "SCALOCK_AUDIT_DBNAME": "{{environment.audit_database_name}}",
-    "SCALOCK_AUDIT_DBHOST": "{{environment.audit_database_host}}",
-    "SCALOCK_AUDIT_DBPORT": "{{environment.audit_database_port}}",
+    "SCALOCK_DBUSER": "{{database.database_user}}",
+    "SCALOCK_DBPASSWORD": "{{database.database_password}}",
+    "SCALOCK_DBNAME": "{{database.database_name}}",
+    "SCALOCK_DBHOST": "{{database.database_host}}",
+    "SCALOCK_DBPORT": "{{database.database_port}}",
+    "SCALOCK_AUDIT_DBUSER": "{{audit_database.audit_database_user}}",
+    "SCALOCK_AUDIT_DBPASSWORD": "{{audit_database.audit_database_password}}",
+    "SCALOCK_AUDIT_DBNAME": "{{audit_database.audit_database_name}}",
+    "SCALOCK_AUDIT_DBHOST": "{{audit_database.audit_database_host}}",
+    "SCALOCK_AUDIT_DBPORT": "{{audit_database.audit_database_port}}",
     "SCALOCK_KERNEL_MODE_ENABLED": "{{advanced.scalockKernelModeEnabled}}",
     "ADMIN_PASSWORD": "{{environment.administrator_password}}",
     "BATCH_INSTALL_TOKEN": "{{environment.secure_token}}",
-    "BATCH_INSTALL_NAME": "{{advanced.batchInstallName}}",
+    "BATCH_INSTALL_NAME": "{{configuration.batch_install_name}}",
     "BATCH_INSTALL_GATEWAY": "{{environment.token_gateway}}",
     "BATCH_INSTALL_ENFORCE_MODE": "{{advanced.batchInstallEnforceMode}}",
     "SCALOCK_LOG_LEVEL": "{{advanced.scalockLogLevel}}",
