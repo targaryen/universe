@@ -41,7 +41,7 @@
       "portMappings": [
         {
           "protocol": "tcp",
-          "hostPort": 3622,
+          "hostPort": {{service.port}},
           "servicePort": 3622,
           "containerPort": 3622,
           "labels": {
@@ -52,7 +52,7 @@
         {
           "protocol": "tcp",
           "containerPort": 80,
-          "hostPort": 80
+          "hostPort": 0
         }
       ]
     }
