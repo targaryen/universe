@@ -37,7 +37,7 @@
     "docker": {
       "image": "{{resource.assets.container.docker.gateway}}",
       "forcePullImage": true,
-      "network": "HOST",
+      "network": "BRIDGE",
       "portMappings": [
         {
           "protocol": "tcp",
