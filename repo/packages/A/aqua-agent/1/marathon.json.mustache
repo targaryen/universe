@@ -19,8 +19,10 @@
     "SCALOCK_SERVER": "{{environment.scalockGatewayEndpoint}}",
     "SILENT": "yes",
     "SCALOCK_TOKEN": "{{environment.scalockToken}}",
-    "SCALOCK_RUN_WATCHER": "yes",
     "AQUA_RUN_WATCHER": "yes",
+    {{#advanced.container_mode}}
+        "AQUA_MODE": "CONTAINER",
+    {{/advanced.container_mode}}
     "RESTART_CONTAINERS": "{{advanced.restartContainers}}",
     "SCALOCK_IMAGE": "{{resource.assets.container.docker.agent}}"
   },

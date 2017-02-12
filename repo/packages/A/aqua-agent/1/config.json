@@ -22,10 +22,11 @@
           "minimum": 64.0
         },
         "instances": {
-          "description": "Number of Aqua Agent instances to deploy",
-          "type": "integer",
-          "default": 1
-        }
+            "description": "Number of service instances to run in the cluster. A single instance will be run per node in the cluster. Normally, this number should be equal or higher than the number of nodes in the cluster.",
+            "type": "number",
+            "default": 6,
+            "minimum": 1
+        },
       },
       "required":[
         "name",
@@ -66,6 +67,11 @@
           "description": "Whether the Aqua agent should restart the existing Docker containers. Recommended: no",
           "type": "string",
           "default": "no"
+        },
+        "container_mode": {
+          "description": "Run as a container with no docker restart? (experimental)",
+          "type": "boolean",
+          "default": "true"
         },
         "acceptedResourceRole": {
           "description": "Accepted resource role restriction for service",
