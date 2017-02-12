@@ -23,7 +23,7 @@
         },
         "instances": {
             "description": "Number of service instances to run in the cluster. A single instance will be run per node in the cluster. Normally, this number should be equal or higher than the number of nodes in the cluster.",
-            "type": "number",
+            "type": "integer",
             "default": 6,
             "minimum": 1
         }
