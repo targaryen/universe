@@ -35,7 +35,7 @@
       "image": "{{resource.assets.container.docker.agent}}",
       "forcePullImage": true,
       "privileged": true,
-      "network": "HOST",
+      "network": "BRIDGE",
       "parameters": [
         {{#advanced.namespaces_enabled}}
           {
