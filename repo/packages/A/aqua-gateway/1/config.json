@@ -109,7 +109,7 @@
         "audit_database_user",
         "audit_database_password"
       ]
-    }
+    },
     "advanced": {
       "description": "Advanced configuration for Aqua Gateway",
       "type": "object",
