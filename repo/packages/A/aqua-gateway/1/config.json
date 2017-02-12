@@ -121,6 +121,11 @@
           "default": 512.0,
           "minimum": 256.0
         },
+        "host_healthcheck_port": {
+          "description": "The port exposed on the host for healthcheck of this service.  Maps to 80 inside container.",
+          "type": "integer",
+          "default": 12319
+        },
         "acceptedResourceRole": {
           "description": "Accepted resource role restriction for service",
           "type": "string",
