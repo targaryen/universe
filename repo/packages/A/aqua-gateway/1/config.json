@@ -43,13 +43,11 @@
         },
         "database_password": {
           "description": "Password for Aqua's primary database user",
-          "type": "string",
-          "default": "MzdUHXkQvg"
+          "type": "string"
         },
         "database_host": {
           "description": "Hostname for Aqua's primary database",
-          "type": "string",
-          "default": "10.8.6.223"
+          "type": "string"
         },
         "database_port": {
           "description": "Port for Aqua's primary database",
@@ -80,13 +78,11 @@
         },
         "audit_database_password": {
           "description": "Password for Aqua's audit database user",
-          "type": "string",
-          "default": "MzdUHXkQvg"
+          "type": "string"
         },
         "audit_database_host": {
           "description": "Hostname for Aqua's audit database",
-          "type": "string",
-          "default": "10.8.6.223"
+          "type": "string"
         },
         "audit_database_port": {
           "description": "Port for Aqua's audit database",
