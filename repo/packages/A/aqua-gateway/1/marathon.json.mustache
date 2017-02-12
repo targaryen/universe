@@ -4,9 +4,9 @@
   "mem": {{service.mem}},
   "instances": {{service.instances}},
   "uris":[
-    {{#docker_config.enable}}
-      "{{docker_config.location}}"
-    {{/docker_config.enable}}
+    {{#docker.config_enabled}}
+      "{{docker.config_location}}"
+    {{/docker.config_enabled}}
   ],
   "acceptedResourceRoles": [
     "{{advanced.acceptedResourceRole}}"
@@ -23,11 +23,12 @@
     "SCALOCK_DBNAME": "{{database.database_name}}",
     "SCALOCK_DBHOST": "{{database.database_host}}",
     "SCALOCK_DBPORT": "{{database.database_port}}",
-    "SCALOCK_AUDIT_DBUSER": "{{database.audit_database_user}}",
-    "SCALOCK_AUDIT_DBPASSWORD": "{{database.audit_database_password}}",
-    "SCALOCK_AUDIT_DBNAME": "{{database.audit_database_name}}",
-    "SCALOCK_AUDIT_DBHOST": "{{database.audit_database_host}}",
-    "SCALOCK_AUDIT_DBPORT": "{{database.audit_database_port}}",
+    "SCALOCK_AUDIT_DBUSER": "{{audit_database.audit_database_user}}",
+    "SCALOCK_AUDIT_DBPASSWORD": "{{audit_database.audit_database_password}}",
+    "SCALOCK_AUDIT_DBNAME": "{{audit_database.audit_database_name}}",
+    "SCALOCK_AUDIT_DBHOST": "{{audit_database.audit_database_host}}",
+    "SCALOCK_AUDIT_DBPORT": "{{audit_database.audit_database_port}}",
+    "SCALOCK_GATEWAY_PUBLIC_IP": "{{advanced.public_address}}",
     "HEALTH_MONITOR": "0.0.0.0:80",
     "SCALOCK_LOG_LEVEL": "DEBUG"
   },

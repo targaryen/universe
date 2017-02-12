@@ -41,7 +41,7 @@
       ]
     },
     "database": {
-      "description": "Environment configuration for Aqua",
+      "description": "Primary database configuration for Aqua",
       "properties": {
         "database_host": {
           "description": "Hostname for Aqua's primary database",
@@ -65,7 +65,19 @@
         "database_password": {
           "description": "Password for Aqua's primary database user",
           "type": "string"
-        },
+        }
+      },
+      "required": [
+        "database_host",
+        "database_port",
+        "database_name",
+        "database_user",
+        "database_password"
+      ]
+    },
+    "audit_database": {
+      "description": "Provides configuration for Aqua's auditing database",
+      "properties": {
         "audit_database_host": {
           "description": "Hostname for Aqua's audit database",
           "type": "string"
@@ -91,22 +103,22 @@
         }
       },
       "required": [
-        "database_host",
-        "database_port",
-        "database_name",
-        "database_user",
-        "database_password",
         "audit_database_host",
         "audit_database_port",
         "audit_database_name",
         "audit_database_user",
         "audit_database_password"
       ]
-    },
+    }
     "advanced": {
       "description": "Advanced configuration for Aqua Gateway",
       "type": "object",
       "properties": {
+        "public_address": {
+          "description": "The 'public' address for the gateways, given to agents and used for health checks.",
+          "type": "string",
+          "default": "aqua-gateway.marathon.l4lb.thisdcos.directory:3622"
+        },
         "acceptedResourceRole": {
           "description": "Accepted resource role restriction for service",
           "type": "string",
@@ -114,16 +126,16 @@
         }
       }
     },
-    "docker_config": {
+    "docker": {
       "type": "object",
       "description": "Allows you to specify a docker config file for private registries.\nSee [this link](https://mesosphere.github.io/marathon/docs/native-docker-private-registry.html) for details.",
       "properties": {
-        "enable": {
+        "config_enabled": {
           "description": "Enable use of a docker config tarball.",
           "type": "boolean",
           "default": true
         },
-        "location": {
+        "config_location": {
           "description": "Location of file on Mesos agent nodes.  This must pre-exist.",
           "type": "string",
           "default": "file:///etc/docker.tar.gz"
