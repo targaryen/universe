@@ -42,7 +42,8 @@
         {
           "protocol": "tcp",
           "hostPort": 3622,
-          "port": 3622,
+          "servicePort": 3622,
+          "containerPort": 3622,
           "labels": {
             "VIP_0": "/aqua-gateway:3622"
           },
@@ -50,8 +51,7 @@
         },
         {
           "protocol": "tcp",
-          "hostPort": 80,
-          "port": 80
+          "containerPort": 80
         }
       ]
     }
