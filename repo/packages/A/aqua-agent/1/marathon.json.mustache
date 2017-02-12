@@ -45,21 +45,14 @@
         {{/advanced.namespaces_enabled}}
         {
           "key": "volume",
-          "value": "/var/run:/var/run"
+          "value": "/var/run/docker.sock:/var/run/docker.sock"
         },
         {
           "key": "user",
           "value": "root"
         }
       ]
-    },
-    "volumes": [
-      {
-        "containerPath": "/root/",
-        "hostPath": "/home/core/",
-        "mode": "RO"
-      }
-    ]
+    }
   },
   "healthChecks": [
     {
