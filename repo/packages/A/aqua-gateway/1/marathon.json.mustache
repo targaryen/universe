@@ -52,14 +52,14 @@
         {
           "protocol": "tcp",
           "containerPort": 80,
-          "hostPort": 0
+          "hostPort": 12319
         }
       ]
     }
   },
   "healthChecks": [
     {
-      "portIndex": 0,
+      "port": 12319,
       "protocol": "HTTP",
       "path": "/",
       "gracePeriodSeconds": 120,
