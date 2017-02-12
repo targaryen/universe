@@ -57,5 +57,15 @@
       "timeoutSeconds": 30,
       "maxConsecutiveFailures": 3
     }
-  ]
+  ],
+  "portDefinitions": [
+    {
+      "protocol": "tcp",
+      "port": 3622,
+      "labels": {
+        "VIP_0": "/aqua-gateway:3622"
+      },
+      "name": "aqua-gateway"
+    }
+  ],
 }
