@@ -9,22 +9,15 @@
           "type": "string",
           "default": "aqua-gateway"
         },
-        "cpus": {
-          "description": "CPU allocation for the Aqua Gateway instance",
-          "type": "number",
-          "default": 0.5,
-          "minimum": 0.05
-        },
-        "mem": {
-          "description": "Memory (MB) allocation for the Aqua Gateway instance",
-          "type": "number",
-          "default": 256.0,
-          "minimum": 64.0
-        },
         "instances": {
           "description": "Number of Aqua Gateway instances to deploy",
           "type": "integer",
           "default": 1
+        },
+        "public_address": {
+          "description": "The 'public' address for the gateways, given to agents and used for availability checks.",
+          "type": "string",
+          "default": "aqua-gateway.marathon.l4lb.thisdcos.directory:3622"
         },
         "port": {
           "description": "Port to run the Aqua Gateway SSH connection on",
@@ -43,9 +36,20 @@
     "database": {
       "description": "Primary database configuration for Aqua",
       "properties": {
+        "database_user": {
+          "description": "Aqua's primary database username",
+          "type": "string",
+          "default": "postgres"
+        },
+        "database_password": {
+          "description": "Password for Aqua's primary database user",
+          "type": "string",
+          "default": "MzdUHXkQvg"
+        },
         "database_host": {
           "description": "Hostname for Aqua's primary database",
-          "type": "string"
+          "type": "string",
+          "default": "10.8.6.223"
         },
         "database_port": {
           "description": "Port for Aqua's primary database",
@@ -56,15 +60,6 @@
           "description": "Name of Aqua's primary database",
           "type": "string",
           "default": "scalock"
-        },
-        "database_user": {
-          "description": "Aqua's primary database username",
-          "type": "string",
-          "default": "postgres"
-        },
-        "database_password": {
-          "description": "Password for Aqua's primary database user",
-          "type": "string"
         }
       },
       "required": [
@@ -78,6 +73,15 @@
     "audit_database": {
       "description": "Provides configuration for Aqua's auditing database",
       "properties": {
+        "audit_database_user": {
+          "description": "Aqua's audit database username",
+          "type": "string",
+          "default": "postgres"
+        },
+        "audit_database_password": {
+          "description": "Password for Aqua's audit database user",
+          "type": "string"
+        },
         "audit_database_host": {
           "description": "Hostname for Aqua's audit database",
           "type": "string"
@@ -91,15 +95,6 @@
           "description": "Name of Aqua's audit database",
           "type": "string",
           "default": "slk_audit"
-        },
-        "audit_database_user": {
-          "description": "Aqua's audit database username",
-          "type": "string",
-          "default": "postgres"
-        },
-        "audit_database_password": {
-          "description": "Password for Aqua's audit database user",
-          "type": "string"
         }
       },
       "required": [
@@ -114,10 +109,17 @@
       "description": "Advanced configuration for Aqua Gateway",
       "type": "object",
       "properties": {
-        "public_address": {
-          "description": "The 'public' address for the gateways, given to agents and used for health checks.",
-          "type": "string",
-          "default": "aqua-gateway.marathon.l4lb.thisdcos.directory:3622"
+        "cpus": {
+          "description": "CPU allocation for the Aqua Gateway instance",
+          "type": "number",
+          "default": 1.0,
+          "minimum": 0.5
+        },
+        "mem": {
+          "description": "Memory (MB) allocation for the Aqua Gateway instance",
+          "type": "number",
+          "default": 512.0,
+          "minimum": 256.0
         },
         "acceptedResourceRole": {
           "description": "Accepted resource role restriction for service",

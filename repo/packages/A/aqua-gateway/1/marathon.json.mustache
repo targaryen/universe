@@ -1,7 +1,7 @@
 {
   "id": "{{service.name}}",
-  "cpus": {{service.cpus}},
-  "mem": {{service.mem}},
+  "cpus": {{advanced.cpus}},
+  "mem": {{advanced.mem}},
   "instances": {{service.instances}},
   "uris":[
     {{#docker.config_enabled}}
@@ -28,7 +28,7 @@
     "SCALOCK_AUDIT_DBNAME": "{{audit_database.audit_database_name}}",
     "SCALOCK_AUDIT_DBHOST": "{{audit_database.audit_database_host}}",
     "SCALOCK_AUDIT_DBPORT": "{{audit_database.audit_database_port}}",
-    "SCALOCK_GATEWAY_PUBLIC_IP": "{{advanced.public_address}}",
+    "SCALOCK_GATEWAY_PUBLIC_IP": "{{service.public_address}}",
     "HEALTH_MONITOR": "0.0.0.0:80",
     "SCALOCK_LOG_LEVEL": "DEBUG"
   },
