@@ -45,7 +45,8 @@
       "properties": {
         "database_host": {
           "description": "Hostname for Aqua's primary database",
-          "type": "string"
+          "type": "string",
+          "default": "aqua-db.marathon.l4lb.thisdcos.directory"
         },
         "database_port": {
           "description": "Port for Aqua's primary database",
@@ -60,11 +61,12 @@
         "database_user": {
           "description": "Aqua's primary database username",
           "type": "string",
-          "default": "postgres"
+          "default": "admin"
         },
         "database_password": {
           "description": "Password for Aqua's primary database user",
-          "type": "string"
+          "type": "string",
+          "default": "password"
         }
       },
       "required": [
@@ -80,7 +82,8 @@
       "properties": {
         "audit_database_host": {
           "description": "Hostname for Aqua's audit database",
-          "type": "string"
+          "type": "string",
+          "default": "aqua-db.marathon.l4lb.thisdcos.directory"
         },
         "audit_database_port": {
           "description": "Port for Aqua's audit database",
@@ -95,11 +98,12 @@
         "audit_database_user": {
           "description": "Aqua's audit database username",
           "type": "string",
-          "default": "postgres"
+          "default": "admin"
         },
         "audit_database_password": {
           "description": "Password for Aqua's audit database user",
-          "type": "string"
+          "type": "string",
+          "default": "password"
         }
       },
       "required": [
