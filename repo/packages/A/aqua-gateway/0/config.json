@@ -112,14 +112,14 @@
         "cpus": {
           "description": "CPU allocation for the Aqua Gateway instance",
           "type": "number",
-          "default": 1.0,
-          "minimum": 0.5
+          "default": 0.25,
+          "minimum": 0.10
         },
         "mem": {
           "description": "Memory (MB) allocation for the Aqua Gateway instance",
           "type": "number",
-          "default": 512.0,
-          "minimum": 256.0
+          "default": 256.0,
+          "minimum": 128.0
         },
         "host_healthcheck_port": {
           "description": "The port exposed on the host for healthcheck of this service.  Maps to 80 inside container.",
