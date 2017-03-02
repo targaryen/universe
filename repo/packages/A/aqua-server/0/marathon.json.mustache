@@ -54,7 +54,7 @@
       "network": "BRIDGE",
       "portMappings": [
         {
-          "hostPort": {{service.port}},
+
           "containerPort": 8080,
           "protocol": "tcp"
         }
@@ -74,7 +74,7 @@
   "healthChecks": [
     {
       "path": "/",
-      "port": {{service.port}},
+      "portIndex": 0,
       "protocol": "HTTP",
       "gracePeriodSeconds": 120,
       "intervalSeconds": 60,

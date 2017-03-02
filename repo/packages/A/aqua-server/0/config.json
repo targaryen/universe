@@ -25,19 +25,13 @@
           "description": "Accepted resource role restriction for service",
           "type": "string",
           "default": "*"
-        },
-        "port": {
-          "description": "Port to run the Aqua web UI on",
-          "type": "integer",
-          "default": 7374
         }
       },
       "required": [
         "name",
         "cpus",
         "mem",
-        "accepted_resource_roles",
-        "port"
+        "accepted_resource_roles"
       ]
     },
     "database": {
