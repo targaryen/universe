@@ -135,7 +135,7 @@
       "required": [
         "cpus",
         "mem",
-        "acceptedResourceRole"
+        "accepted_resource_roles"
       ]
     },
     "docker": {

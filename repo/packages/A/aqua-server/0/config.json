@@ -36,7 +36,7 @@
         "name",
         "cpus",
         "mem",
-        "acceptedResourceRole",
+        "accepted_resource_roles",
         "port"
       ]
     },
