@@ -9,7 +9,7 @@
     {{/docker.config_enabled}}
   ],
   "acceptedResourceRoles": [
-    "{{advanced.acceptedResourceRole}}"
+    "{{advanced.accepted_resource_roles}}"
   ],
   "constraints": [
     {{#advanced.extraConstraintName}}
@@ -35,7 +35,7 @@
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "{{resource.assets.container.docker.gateway}}",
+      "image": "{{docker.image_name}}",
       {{#docker.always_pull_image}}
       "forcePullImage": true,
       {{/docker.always_pull_image}}
