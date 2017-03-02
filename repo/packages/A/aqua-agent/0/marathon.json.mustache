@@ -40,6 +40,13 @@
       {{/docker.always_pull_image}}
       "privileged": true,
       "network": "BRIDGE",
+      "portMappings": [
+        {
+          "hostPort": 12486,
+          "containerPort": 12486,
+          "protocol": "tcp"
+        }
+      ],
       "parameters": [
         {{#docker.namespaces_enabled}}
           {
