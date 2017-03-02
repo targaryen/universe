@@ -162,8 +162,8 @@
         },
         "enforce_mode": {
           "description": "Enforce mode for the batch install (y for enforce, n for audit)",
-          "type": "string",
-          "default": "n"
+          "type": "boolean",
+          "default": false
         }
       }
     },

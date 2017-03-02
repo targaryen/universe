@@ -33,7 +33,9 @@
     "BATCH_INSTALL_TOKEN": "{{gateway.secure_token}}",
     "BATCH_INSTALL_NAME": "{{gateway.batch_install_name}}",
     "BATCH_INSTALL_GATEWAY": "{{gateway.token_gateway}}",
-    "BATCH_INSTALL_ENFORCE_MODE": "{{gateway.enforce_mode}}",
+    {{#gateway.enforce_mode}}
+    "BATCH_INSTALL_ENFORCE_MODE": "y",
+    {{/gateway.enforce_mode}}
     "SCALOCK_LOG_LEVEL": "{{configuration.log_level}}",
     "LICENSE_TOKEN": "{{configuration.license_key}}",
     "AUTHORIZATION_HEADER": "{{configuration.authorization_header}}"
