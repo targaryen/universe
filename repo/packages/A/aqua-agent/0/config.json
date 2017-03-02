@@ -93,6 +93,11 @@
           "default": false,
           "description": "Whether user namespaces is enabled on the host. Must be set to true if so.",
           "type": "boolean"
+        },
+        "healthcheck_enabled": {
+          "default": false,
+          "description": "Healthchecks are disabled on agent by default due to old Marathon version with bug on common cloud platform defaults. See https://issues.apache.org/jira/browse/MESOS-3136.",
+          "type": "boolean"
         }
       }
     }
