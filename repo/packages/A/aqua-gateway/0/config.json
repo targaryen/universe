@@ -9,22 +9,15 @@
           "type": "string",
           "default": "aqua-gateway"
         },
-        "cpus": {
-          "description": "CPU allocation for the Aqua Gateway instance",
-          "type": "number",
-          "default": 0.5,
-          "minimum": 0.05
-        },
-        "mem": {
-          "description": "Memory (MB) allocation for the Aqua Gateway instance",
-          "type": "number",
-          "default": 256.0,
-          "minimum": 64.0
-        },
         "instances": {
           "description": "Number of Aqua Gateway instances to deploy",
           "type": "integer",
           "default": 1
+        },
+        "public_address": {
+          "description": "The 'public' address for the gateways, given to agents and used for availability checks.",
+          "type": "string",
+          "default": "aqua-gateway.marathon.l4lb.thisdcos.directory:3622"
         },
         "port": {
           "description": "Port to run the Aqua Gateway SSH connection on",
@@ -32,68 +25,137 @@
           "default": 3622
         }
       },
-      "required":[
+      "required": [
         "name",
-        "cpus",
-        "mem",
         "instances",
         "port"
       ]
     },
-    "environment": {
-      "description": "Environment configuration for Aqua",
+    "database": {
+      "description": "Primary database configuration for Aqua",
       "properties": {
-        "dbHost": {
-          "description": "Aqua Postgres hostname",
-          "type": "string"
+        "database_user": {
+          "description": "Aqua's primary database username",
+          "type": "string",
+          "default": "admin"
         },
-        "dbPort": {
-          "description": "Aqua Postgres hostname",
+        "database_password": {
+          "description": "Password for Aqua's primary database user",
+          "type": "string",
+          "default": "password"
+        },
+        "database_host": {
+          "description": "Hostname for Aqua's primary database",
+          "type": "string",
+          "default": "aqua-db.marathon.l4lb.thisdcos.directory"
+        },
+        "database_port": {
+          "description": "Port for Aqua's primary database",
           "type": "integer",
           "default": 5432
         },
-        "dbDatabase": {
-          "description": "Aqua Postgres database name",
+        "database_name": {
+          "description": "Name of Aqua's primary database",
           "type": "string",
-          "default": "aqua"
-        },
-        "dbAuditDatabase": {
-          "description": "Aqua Postgres audit database name",
-          "type": "string",
-          "default": "audit"
-        },
-        "dbUsername": {
-          "description": "Aqua Postgres database user",
-          "type": "string",
-          "default": "aqua"
-        },
-        "dbPassword": {
-          "description": "Aqua Postgres database password",
-          "type": "string"
+          "default": "scalock"
         }
       },
-      "required":[
-        "dbHost",
-        "dbPort",
-        "dbDatabase",
-        "dbAuditDatabase",
-        "dbUsername",
-        "dbPassword"
+      "required": [
+        "database_host",
+        "database_port",
+        "database_name",
+        "database_user",
+        "database_password"
+      ]
+    },
+    "audit_database": {
+      "description": "Provides configuration for Aqua's auditing database",
+      "properties": {
+        "audit_database_user": {
+          "description": "Aqua's audit database username",
+          "type": "string",
+          "default": "admin"
+        },
+        "audit_database_password": {
+          "description": "Password for Aqua's audit database user",
+          "type": "string",
+          "default": "password"
+        },
+        "audit_database_host": {
+          "description": "Hostname for Aqua's audit database",
+          "type": "string",
+          "default": "aqua-db.marathon.l4lb.thisdcos.directory"
+        },
+        "audit_database_port": {
+          "description": "Port for Aqua's audit database",
+          "type": "integer",
+          "default": 5432
+        },
+        "audit_database_name": {
+          "description": "Name of Aqua's audit database",
+          "type": "string",
+          "default": "slk_audit"
+        }
+      },
+      "required": [
+        "audit_database_host",
+        "audit_database_port",
+        "audit_database_name",
+        "audit_database_user",
+        "audit_database_password"
       ]
     },
     "advanced": {
       "description": "Advanced configuration for Aqua Gateway",
       "type": "object",
       "properties": {
-        "dockercfgLocation": {
-          "description": ".dockercfg location on Mesos agent nodes. Aqua containers are private by default; this config must contain permissions to access.",
-          "type": "string",
-          "default": "file:///home/core/docker.tar.gz"
+        "cpus": {
+          "description": "CPU allocation for the Aqua Gateway instance",
+          "type": "number",
+          "default": 1.0,
+          "minimum": 0.5
+        },
+        "mem": {
+          "description": "Memory (MB) allocation for the Aqua Gateway instance",
+          "type": "number",
+          "default": 512.0,
+          "minimum": 256.0
+        },
+        "host_healthcheck_port": {
+          "description": "The port exposed on the host for healthcheck of this service.  Maps to 80 inside container.",
+          "type": "integer",
+          "default": 12319
         },
         "acceptedResourceRole": {
           "description": "Accepted resource role restriction for service",
           "type": "string",
           "default": "*"
+        }
+      },
+      "required": [
+        "cpus",
+        "mem",
+        "acceptedResourceRole"
+      ]
+    },
+    "docker": {
+      "type": "object",
+      "description": "Allows you to specify a docker config file for private registries.\nSee [this link](https://mesosphere.github.io/marathon/docs/native-docker-private-registry.html) for details.",
+      "properties": {
+        "always_pull_image": {
+          "description": "Always attempt to pull image before deploying",
+          "type": "boolean",
+          "default": false
+        },
+        "config_enabled": {
+          "description": "Enable use of a docker config tarball.",
+          "type": "boolean",
+          "default": true
+        },
+        "config_location": {
+          "description": "Location of file on Mesos agent nodes.  This must pre-exist.",
+          "type": "string",
+          "default": "file:///etc/docker.tar.gz"
         }
       }
     }

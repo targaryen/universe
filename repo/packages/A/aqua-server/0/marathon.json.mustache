@@ -2,12 +2,14 @@
   "id": "{{service.name}}",
   "cpus": {{service.cpus}},
   "mem": {{service.mem}},
-  "instances": {{service.instances}},
+  "instances": 1,
   "uris":[
-    "{{advanced.dockercfgLocation}}"
+    {{#docker.config_enabled}}
+      "{{docker.config_location}}"
+    {{/docker.config_enabled}}
   ],
   "acceptedResourceRoles": [
-    "{{advanced.acceptedResourceRole}}"
+    "{{service.acceptedResourceRole}}"
   ],
   "constraints": [
     {{#advanced.extraConstraintName}}
@@ -16,25 +18,25 @@
     ["hostname", "UNIQUE"]
   ],
   "env": {
-    "SCALOCK_DBUSER": "{{environment.dbUsername}}",
-    "SCALOCK_DBPASSWORD": "{{environment.dbPassword}}",
-    "SCALOCK_DBNAME": "{{environment.dbDatabase}}",
-    "SCALOCK_DBHOST": "{{environment.dbHost}}",
-    "SCALOCK_DBPORT": "{{environment.dbPort}}",
-    "SCALOCK_AUDIT_DBUSER": "{{environment.dbUsername}}",
-    "SCALOCK_AUDIT_DBPASSWORD": "{{environment.dbPassword}}",
-    "SCALOCK_AUDIT_DBNAME": "{{environment.dbAuditDatabase}}",
-    "SCALOCK_AUDIT_DBHOST": "{{environment.dbHost}}",
-    "SCALOCK_AUDIT_DBPORT": "{{environment.dbPort}}",
+    "SCALOCK_DBUSER": "{{database.database_user}}",
+    "SCALOCK_DBPASSWORD": "{{database.database_password}}",
+    "SCALOCK_DBNAME": "{{database.database_name}}",
+    "SCALOCK_DBHOST": "{{database.database_host}}",
+    "SCALOCK_DBPORT": "{{database.database_port}}",
+    "SCALOCK_AUDIT_DBUSER": "{{audit_database.audit_database_user}}",
+    "SCALOCK_AUDIT_DBPASSWORD": "{{audit_database.audit_database_password}}",
+    "SCALOCK_AUDIT_DBNAME": "{{audit_database.audit_database_name}}",
+    "SCALOCK_AUDIT_DBHOST": "{{audit_database.audit_database_host}}",
+    "SCALOCK_AUDIT_DBPORT": "{{audit_database.audit_database_port}}",
     "SCALOCK_KERNEL_MODE_ENABLED": "{{advanced.scalockKernelModeEnabled}}",
-    "ADMIN_PASSWORD": "{{environment.scalockAdminPassword}}",
-    "BATCH_INSTALL_TOKEN": "{{environment.scalockToken}}",
-    "BATCH_INSTALL_NAME": "{{advanced.batchInstallName}}",
-    "BATCH_INSTALL_GATEWAY": "{{environment.scalockGatewayEndpoint}}",
-    "BATCH_INSTALL_ENFORCE_MODE": "{{advanced.batchInstallEnforceMode}}",
-    "SCALOCK_LOG_LEVEL": "{{advanced.scalockLogLevel}}",
-    "LICENSE_TOKEN": "{{environment.scalockLicense}}",
-    "AUTHORIZATION_HEADER": "{{advanced.authorizationHeader}}"
+    "ADMIN_PASSWORD": "{{configuration.administrator_password}}",
+    "BATCH_INSTALL_TOKEN": "{{gateway.secure_token}}",
+    "BATCH_INSTALL_NAME": "{{gateway.batch_install_name}}",
+    "BATCH_INSTALL_GATEWAY": "{{gateway.token_gateway}}",
+    "BATCH_INSTALL_ENFORCE_MODE": "{{gateway.enforce_mode}}",
+    "SCALOCK_LOG_LEVEL": "{{configuration.log_level}}",
+    "LICENSE_TOKEN": "{{configuration.license_key}}",
+    "AUTHORIZATION_HEADER": "{{configuration.authorization_header}}"
   },
   "labels": {
     "AGENT_FILL": "true"
@@ -43,7 +45,11 @@
     "type": "DOCKER",
     "docker": {
       "image": "{{resource.assets.container.docker.server}}",
+      {{#docker.always_pull_image}}
       "forcePullImage": true,
+      {{/docker.always_pull_image}} {{#docker.always_pull_image?}}
+      "forcePullImage": false,
+      {{/docker.always_pull_image}}
       "network": "BRIDGE",
       "portMappings": [
         {
