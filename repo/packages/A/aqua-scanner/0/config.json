@@ -60,7 +60,7 @@
           "type": "number",
           "default": 512.0,
           "minimum": 128.0
-        }
+        },
         "accepted_resource_roles": {
           "description": "Accepted resource role restriction for service",
           "type": "string",
