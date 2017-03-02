@@ -23,7 +23,8 @@
         "AQUA_MODE": "CONTAINER",
     {{/aqua_config.container_mode}}
     "RESTART_CONTAINERS": "{{restart_containers.restart_containers}}",
-    "SCALOCK_IMAGE": "{{resource.assets.container.docker.agent}}"
+    "SCALOCK_IMAGE": "{{resource.assets.container.docker.agent}}",
+    "MESOS_LAUNCHER_DIR": "/usr/libexec/mesos"
   },
   "labels": {
     "AGENT_FILL": "true"
