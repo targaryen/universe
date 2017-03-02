@@ -185,7 +185,7 @@
         "config_enabled": {
           "description": "Enable use of a docker config tarball.",
           "type": "boolean",
-          "default": true
+          "default": false
         },
         "config_location": {
           "description": "Location of file on Mesos agent nodes.  This must pre-exist.",
