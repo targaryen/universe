@@ -71,6 +71,11 @@
       ]
     },
     "docker": {
+      "image_name": {
+        "description": "Image name to use",
+        "type": "string",
+        "default": "aquasec/agent:2.0.eof-fix"
+      },
       "description": "Docker options for agent installation",
       "type": "object",
       "properties": {
