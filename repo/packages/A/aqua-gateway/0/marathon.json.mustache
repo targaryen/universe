@@ -38,7 +38,8 @@
       "image": "{{resource.assets.container.docker.gateway}}",
       {{#docker.always_pull_image}}
       "forcePullImage": true,
-      {{/docker.always_pull_image}} {{#docker.always_pull_image?}}
+      {{/docker.always_pull_image}}
+      {{^docker.always_pull_image}}
       "forcePullImage": false,
       {{/docker.always_pull_image}}
       "network": "BRIDGE",
