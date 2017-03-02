@@ -9,7 +9,7 @@
     {{/docker.config_enabled}}
   ],
   "acceptedResourceRoles": [
-    "{{advanced.accepted_resource_roles}}"
+    "{{advanced.acceptedResourceRole}}"
   ],
   "constraints": [
     {{#advanced.extraConstraintName}}
@@ -35,19 +35,41 @@
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "{{docker.image_name}}",
+      "image": "{{resource.assets.container.docker.gateway}}",
       {{#docker.always_pull_image}}
       "forcePullImage": true,
-      {{/docker.always_pull_image}}
-      {{^docker.always_pull_image}}
+      {{/docker.always_pull_image}} {{#docker.always_pull_image?}}
       "forcePullImage": false,
       {{/docker.always_pull_image}}
       "network": "BRIDGE",
       "portMappings": [
+        {
+          "protocol": "tcp",
+          "hostPort": {{service.port}},
+          "servicePort": 3622,
+          "containerPort": 3622,
+          "labels": {
+            "VIP_0": "/aqua-gateway:3622"
+          },
+        "name": "aqua-gateway"
+        },
+        {
+          "protocol": "tcp",
+          "containerPort": 80,
+          "hostPort": {{advanced.host_healthcheck_port}}
+        }
       ]
     }
   },
   "healthChecks": [
-
+    {
+      "port": {{advanced.host_healthcheck_port}},
+      "protocol": "HTTP",
+      "path": "/",
+      "gracePeriodSeconds": 120,
+      "intervalSeconds": 60,
+      "timeoutSeconds": 30,
+      "maxConsecutiveFailures": 3
+    }
   ]
 }
