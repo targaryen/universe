@@ -23,8 +23,7 @@
         "AQUA_MODE": "CONTAINER",
     {{/aqua_config.container_mode}}
     "RESTART_CONTAINERS": "{{restart_containers.restart_containers}}",
-    "SCALOCK_IMAGE": "{{resource.assets.container.docker.agent}}",
-    "MESOS_LAUNCHER_DIR": "/usr/libexec/mesos"
+    "SCALOCK_IMAGE": "{{resource.assets.container.docker.agent}}"
   },
   "labels": {
     "AGENT_FILL": "true"
@@ -51,6 +50,10 @@
         {
           "key": "volume",
           "value": "/var/run/docker.sock:/var/run/docker.sock"
+        },
+        {
+          "key": "env",
+          "value": "MESOS_LAUNCHER_DIR=/usr/libexec/mesos"
         },
         {
           "key": "user",
