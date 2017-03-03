@@ -14,18 +14,6 @@
   "constraints": [
   ],
   "env": {
-    "SCALOCK_DBUSER": "{{database.database_user}}",
-    "SCALOCK_DBPASSWORD": "{{database.database_password}}",
-    "SCALOCK_DBNAME": "{{database.database_name}}",
-    "SCALOCK_DBHOST": "{{database.database_host}}",
-    "SCALOCK_DBPORT": "{{database.database_port}}",
-    "SCALOCK_AUDIT_DBUSER": "{{audit_database.audit_database_user}}",
-    "SCALOCK_AUDIT_DBPASSWORD": "{{audit_database.audit_database_password}}",
-    "SCALOCK_AUDIT_DBNAME": "{{audit_database.audit_database_name}}",
-    "SCALOCK_AUDIT_DBHOST": "{{audit_database.audit_database_host}}",
-    "SCALOCK_AUDIT_DBPORT": "{{audit_database.audit_database_port}}",
-    "SCALOCK_GATEWAY_PUBLIC_IP": "{{service.public_address}}",
-    "HEALTH_MONITOR": "0.0.0.0:80",
     "SCALOCK_LOG_LEVEL": "DEBUG"
   },
   "container": {
@@ -39,16 +27,16 @@
       "forcePullImage": false,
       {{/docker.always_pull_image}}
       "network": "BRIDGE",
-      "args": [
-        "--daemon",
-        "--user", "{{ aqua-web.scanner_user }}",
-        "--password", "{{ aqua-web.scanner_user }}",
-        "--host", "{{ aqua-web.scanner_user }}"
-      ],
       "portMappings": [
       ]
     }
   },
+  "args": [
+    "--daemon",
+    "--user", "{{ aqua-web.scanner_user }}",
+    "--password", "{{ aqua-web.scanner_user }}",
+    "--host", "{{ aqua-web.scanner_user }}"
+  ],
   "healthChecks": [
   ]
 }
