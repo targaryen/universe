@@ -12,13 +12,13 @@
         "cpus": {
           "description": "CPU allocation for the Aqua Web instance",
           "type": "number",
-          "default": 0.5,
+          "default": 1.0,
           "minimum": 0.15
         },
         "mem": {
           "description": "Memory (MB) allocation for the Aqua Web instance",
           "type": "number",
-          "default": 1024.0,
+          "default": 1536.0,
           "minimum": 256.0
         },
         "accepted_resource_roles": {
@@ -124,7 +124,7 @@
         "log_level": {
           "description": "Log level for aqua-web",
           "type": "string",
-          "default": "INFO"
+          "default": "DEBUG"
         },
         "authorization_header": {
           "description": "A custom Authorization header to use in the web UI. Do not use Authorization since it conflicts with DC/OS headers.",
