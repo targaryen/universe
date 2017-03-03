@@ -49,6 +49,12 @@
           "hostPort": {{service.port}},
           "servicePort": 3622,
           "containerPort": 3622,
+          "args": [
+            "--daemon",
+            "--user", "{{ aqua-web.scanner_user }}",
+            "--password", "{{ aqua-web.scanner_password }}",
+            "--host", "{{ aqua-web.aqua_host }}"
+          ],
           "labels": {
             "VIP_0": "/aqua-gateway:3622"
           },
