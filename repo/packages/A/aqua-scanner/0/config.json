@@ -26,7 +26,7 @@
         "scanner_user": {
           "description": "Aqua's primary database username",
           "type": "string",
-          "default": "scanner-daemon"
+          "default": "scanner"
         },
         "scanner_password": {
           "description": "Password for Aqua user with 'scanner' role.",
@@ -58,8 +58,8 @@
         "mem": {
           "description": "Memory (MB) allocation for the Aqua scanner instance",
           "type": "number",
-          "default": 512.0,
-          "minimum": 128.0
+          "default": 1024.0,
+          "minimum": 512.0
         },
         "accepted_resource_roles": {
           "description": "Accepted resource role restriction for service",
