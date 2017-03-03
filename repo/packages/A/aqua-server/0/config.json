@@ -25,13 +25,19 @@
           "description": "Accepted resource role restriction for service",
           "type": "string",
           "default": "*"
+        },
+        "port": {
+          "description": "Accepted resource role restriction for service",
+          "type": "integer",
+          "default": "8084"
         }
       },
       "required": [
         "name",
         "cpus",
         "mem",
-        "accepted_resource_roles"
+        "accepted_resource_roles",
+        "port"
       ]
     },
     "database": {
