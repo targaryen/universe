@@ -60,6 +60,9 @@
           "hostPort": {{service.port}},
           "containerPort": 8080,
           "protocol": "tcp",
+          "labels": {
+            "VIP_0": "/aqua-web:{{service.port}}"
+          },
           "name": "aqua-web"
         },
         {
