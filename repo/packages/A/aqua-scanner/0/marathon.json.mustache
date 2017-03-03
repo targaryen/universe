@@ -39,6 +39,12 @@
       "forcePullImage": false,
       {{/docker.always_pull_image}}
       "network": "BRIDGE",
+      "args": [
+        "--daemon",
+        "--user", "{{ aqua-web.scanner_user }}",
+        "--password", "{{ aqua-web.scanner_user }}",
+        "--host", "{{ aqua-web.scanner_user }}"
+      ],
       "portMappings": [
       ]
     }
