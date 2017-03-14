@@ -15,7 +15,7 @@
   ],
   "env": {
     "SCALOCK_LOG_LEVEL": "DEBUG",
-    "AUTHORIZATION_HEADER": "aqua-auth"
+    "AUTHORIZATION_HEADER": "{{aqua-web.authorization_header}}"
   },
   "container": {
     "type": "DOCKER",
@@ -27,6 +27,7 @@
       {{^docker.always_pull_image}}
       "forcePullImage": false,
       {{/docker.always_pull_image}}
+      "privileged": true,
       "network": "BRIDGE",
       "portMappings": [
       ]
