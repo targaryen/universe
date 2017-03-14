@@ -30,6 +30,12 @@
       "privileged": true,
       "network": "BRIDGE",
       "portMappings": [
+      ],
+      "parameters": [
+        {
+          "key": "volume",
+          "value": "/var/run/docker.sock:/var/run/docker.sock"
+        }
       ]
     }
   },
